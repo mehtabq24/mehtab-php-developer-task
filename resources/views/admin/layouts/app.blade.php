@@ -10,9 +10,6 @@
     <link href="{{ asset('admin/images/logo/favicon.png') }}" rel="shortcut icon" type="image/x-icon">
     
     <title>Stanford Admin Dashboard</title>
-     <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendor/datatable/jquery.dataTables.min.css') }}">
-   
-
     <!-- editor css -->
     <link rel="stylesheet" href="{{ asset('admin/vendor/trumbowyg/trumbowyg.min.css') }}">
 
@@ -65,6 +62,8 @@
 
     <!-- Glightbox -->
     <link rel="stylesheet" href="{{ asset('admin/vendor/glightbox/glightbox.min.css') }}">
+
+      <link rel="stylesheet" type="text/css" href="{{ asset('admin/vendor/datatable/jquery.dataTables.min.css') }}">
 </head>
 
 <body>

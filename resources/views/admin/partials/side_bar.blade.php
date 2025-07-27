@@ -79,14 +79,21 @@
         <ul class="main-nav p-0 mt-2">
             <li class="menu-title"><span>Dashboard</span></li>
             <li class="no-sub">
-                <a href="{{ url('admin.enquiries.index') }}">
+                <a href="{{ route('admin.products.index') }}">
                     <svg stroke="currentColor" stroke-width="1.5">
                         <use xlink:href="../assets/svg/_sprite.svg#document-text"></use>
                     </svg>
                     Product
                 </a>
             </li>
-            
+            <li class="no-sub">
+                <a href="{{ route('admin.cart.index') }}">
+                    <svg stroke="currentColor" stroke-width="1.5">
+                        <use xlink:href="../assets/svg/_sprite.svg#document-text"></use>
+                    </svg>
+                    Cart
+                </a>
+            </li>
         </ul>
                     <form action="{{ route('logout') }}" method="POST">
                                     @csrf

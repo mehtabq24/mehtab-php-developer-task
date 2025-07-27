@@ -8,57 +8,50 @@
                     <div class="col-12">
                         <div class="card ">
                             <div class="card-body p-0">
+                                <div class="mt-4 d-flex justify-content-end gap-2 flex-column flex-sm-row text-end">
+                                    <a href="{{ route('admin.products.create') }}" class="btn btn-light-primary" style="margin-right: 50px;">Add Product</a>
+                                </div>
                                 <div class="app-datatable-default overflow-auto">
                                     <table id="example" class="display app-data-table default-data-table">
                                     <thead>
                                         <tr>
+                                            <th>#</th>
                                             <th>Name</th>
-                                            <th>Designation</th>
-                                            <th>Company</th>
-                                            <th>City</th>
-                                            <th>Email</th>
-                                            <th>Phone</th>
-                                            <th>Status</th>
-                                            <th>Created At</th>
-                                            <th>Action</th>
+                                            <th>Price (₹)</th>
+                                            <th>Images</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        @foreach ($enquiries as $enquiry)
+                                     <tbody>
+                                        @forelse($products as $product)
                                             <tr>
-                                                <td>{{ $enquiry->first_name }} {{ $enquiry->last_name }}</td>
-                                                <td><span class="badge text-light-primary">{{ $enquiry->designation }}</span></td>
-                                                <td>{{ $enquiry->company_name }}</td>
-                                                <td>{{ $enquiry->city }}</td>
-                                                <td>{{ $enquiry->email }}</td>
-                                                <td>{{ $enquiry->phone }}</td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $product->name }}</td>
+                                                <td>{{ number_format($product->price, 2) }}</td>
                                                 <td>
-                                                    <span class="badge 
-                                                        @if($enquiry->status == 'new') bg-info
-                                                        @elseif($enquiry->status == 'in_progress') bg-warning
-                                                        @elseif($enquiry->status == 'completed') bg-success
-                                                        @elseif($enquiry->status == 'spam') bg-danger
-                                                        @endif">
-                                                        {{ ucfirst(str_replace('_', ' ', $enquiry->status)) }}
-                                                    </span>
+                                                    @foreach($product->images as $image)
+                                                        <img src="{{ asset('storage/' . $image->image_path) }}" width="50" height="50" class="rounded" />
+                                                    @endforeach
                                                 </td>
-                                                <td>{{ $enquiry->created_at->format('Y-m-d') }}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-light-success icon-btn b-r-4">
-                                                        <i class="ti ti-edit text-success"></i>
-                                                    </button>
-                                                    <button type="button" class="btn btn-light-danger icon-btn b-r-4 delete-btn">
-                                                        <i class="ti ti-trash"></i>
-                                                    </button>
+                                                    <a href="{{ route('admin.products.edit', $product->id) }}" class="btn btn-sm btn-warning">Edit</a>
+
+                                                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" style="display:inline;">
+                                                        @csrf @method('DELETE')
+                                                        <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
-                                        @endforeach
-                                    </tbody>
+                                        @empty
+                                            <tr><td colspan="5">No products found.</td></tr>
+                                        @endforelse
+                                        </tbody>
                                 </table>
 
                                 {{-- Pagination Links --}}
                                 <div class="mt-3">
-                                    {{ $enquiries->links() }}
+                                    {{ $products->links() }}
+
                                 </div>
 
                                 </div>

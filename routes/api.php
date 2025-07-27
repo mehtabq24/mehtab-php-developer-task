@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductApiController;
+use App\Http\Controllers\Api\CartController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,7 +14,15 @@ use App\Http\Controllers\Api\ProductApiController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
 Route::get('/products', [ProductApiController::class, 'index']);
+
+Route::post('/cart', [CartController::class, 'addToCart']);
+Route::get('/cart', [CartController::class, 'index']);
+// Route::post('/cart/update', [CartController::class, 'updateQuantity']);
+Route::put('/cart/update', [CartController::class, 'updateQuantity']);
+Route::post('/cart/remove', [CartController::class, 'remove']);
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

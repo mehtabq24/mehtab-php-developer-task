@@ -42,7 +42,7 @@ class LoginController extends Controller
 
             // Not an admin, force logout
             Auth::logout();
-            return redirect('/admin/login')->withErrors([
+            return redirect('/')->withErrors([
                 'email' => 'You are not authorized to access the admin panel.',
             ]);
         }
@@ -59,6 +59,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 }
