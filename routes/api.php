@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductApiController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\CheckoutController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,6 +25,7 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::put('/cart/update', [CartController::class, 'updateQuantity']);
 Route::post('/cart/remove', [CartController::class, 'remove']);
 
+Route::post('/checkout', [CheckoutController::class, 'checkout']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

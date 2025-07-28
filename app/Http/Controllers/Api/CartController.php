@@ -51,23 +51,28 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'product_id' => 'required|exists:products,id',
             'quantity' => 'nullable|integer|min:1'
         ]);
 
         $cartItem = CartItem::updateOrCreate(
             [
-                'user_id' => 1, // hardcoded
-                'product_id' => $request->product_id,
+                'user_id' => 1, // hardcoded user
+                'product_id' => $validated['product_id'],
             ],
             [
-                'quantity' => DB::raw("quantity + " . ($request->quantity ?? 1))
+                'quantity' => DB::raw("quantity + " . ($validated['quantity'] ?? 1))
             ]
         );
 
-        return response()->json(['success' => true, 'message' => 'Product added to cart', 'data' => $cartItem]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Product added to cart',
+            'data' => $cartItem
+        ]);
     }
+
 
     public function updateQuantity(Request $request)
     {

@@ -24,9 +24,9 @@
                                             <tr>
                                                 <td>{{ $index + 1 }}</td>
                                                 <td>{{ $item->product->name }}</td>
-                                                <td>₹{{ number_format($item->product->price, 2) }}</td>
+                                                <td>${{ number_format($item->product->price, 2) }}</td>
                                                 <td>{{ $item->quantity }}</td>
-                                                <td>₹{{ number_format($item->product->price * $item->quantity, 2) }}</td>
+                                                <td>${{ number_format($item->product->price * $item->quantity, 2) }}</td>
                                             </tr>
                                         @empty
                                             <tr>
@@ -37,7 +37,7 @@
                                     <tfoot>
                                         <tr>
                                             <th colspan="4" class="text-end">Total</th>
-                                            <th>₹{{ number_format($total, 2) }}</th>
+                                            <th>${{ number_format($total, 2) }}</th>
                                         </tr>
                                     </tfoot>
                                 </table>

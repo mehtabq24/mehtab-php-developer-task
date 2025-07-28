@@ -31,7 +31,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\CartController;
-
+use App\Http\Controllers\Admin\OrderController;
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/', [LoginController::class, 'login']);
@@ -42,10 +42,16 @@ Route::prefix('admin')
     ->middleware(['auth', 'is_admin']) // <-- combine in one line
     ->name('admin.')
     ->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+
+
+        // Route::get('/dashboard', function () {
+        //     return view('admin.dashboard');
+        // })->name('dashboard');
+
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
         Route::resource('products', ProductController::class);
         Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+        Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+        Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
     });

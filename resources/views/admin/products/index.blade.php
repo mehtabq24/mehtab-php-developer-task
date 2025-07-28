@@ -17,7 +17,7 @@
                                         <tr>
                                             <th>#</th>
                                             <th>Name</th>
-                                            <th>Price (₹)</th>
+                                            <th>Price ($)</th>
                                             <th>Images</th>
                                             <th>Actions</th>
                                         </tr>

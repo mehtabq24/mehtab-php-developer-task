@@ -44,7 +44,7 @@ class ProductController extends Controller
         $product = Product::create([
             'name'  => $request->name,
             'price' => $request->price,
-            'price' => $request->description,
+            'description' => $request->description,
         ]);
 
         if ($request->hasFile('images')) {
@@ -119,7 +119,7 @@ class ProductController extends Controller
         $product->update([
             'name' => $request->name,
             'price' => $request->price,
-            'price' => $request->description,
+            'description' => $request->description,
         ]);
 
         if ($request->hasFile('images')) {

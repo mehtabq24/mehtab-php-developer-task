@@ -1,7 +1,9 @@
 <nav>
     <div class="app-logo">
         <a class="logo d-inline-block" href="{{ url('/admin/dashboard') }}">
-            <img alt="#" src="{{ asset('images/icons/logo-2.png') }}" class="">
+            <img alt="#" src="{{ asset('admin/images/logo/1.png') }}"
+            
+            class="">
         </a>
 
         <span class="bg-light-primary toggle-semi-nav d-flex-center">
@@ -92,6 +94,14 @@
                         <use xlink:href="../assets/svg/_sprite.svg#document-text"></use>
                     </svg>
                     Cart
+                </a>
+            </li>
+            <li class="no-sub">
+                <a href="{{ route('admin.orders.index') }}">
+                    <svg stroke="currentColor" stroke-width="1.5">
+                        <use xlink:href="../assets/svg/_sprite.svg#document-text"></use>
+                    </svg>
+                    Orders
                 </a>
             </li>
         </ul>
